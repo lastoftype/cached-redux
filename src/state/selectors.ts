@@ -1,12 +1,3 @@
-import { createSelector, Selector } from "reselect";
-import { Result } from "../types";
-import { IState, IQueryObject } from "./reducer";
+import { IState } from "./reducer";
 
-export const selectResultsByQuery: Selector<IState, IState["resultsByQuery"]> =
-  (state) => state.resultsByQuery;
-
-export const createSelectResult = (queryString: string) => {
-  return createSelector(selectResultsByQuery, (resultsByQuery) => {
-    return resultsByQuery[queryString] || {};
-  });
-};
+export const selectResultsByQuery = (state: IState) => state.resultsByQuery;

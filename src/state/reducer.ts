@@ -26,6 +26,10 @@ export const reducer: Reducer<IState> = (
       ...state,
       resultsByQuery: {
         ...state.resultsByQuery,
+
+        /**
+         * Key by query string, i.e. `page=1&offset=10`
+         */
         [queryString]: {
           ...state.resultsByQuery[queryString],
           loading: true,
@@ -38,6 +42,10 @@ export const reducer: Reducer<IState> = (
       ...state,
       resultsByQuery: {
         ...state.resultsByQuery,
+
+        /**
+         * Key by query string, i.e. `page=1&offset=10`
+         */
         [queryString]: {
           data,
           loading: false,

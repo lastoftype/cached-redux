@@ -1,14 +1,14 @@
-import * as ActionTypes from './actionTypes'
-import * as ActionCreators from './actionCreators'
+import * as ActionTypes from "./actionTypes";
+import * as Actions from "./actionCreators";
 
-export const fetchRequest = (action: any): action is ActionCreators.IActions['FETCH_REQUEST'] => {
-  return action.type === ActionTypes.FETCH_REQUEST
-}
+export const fetchRequest = (a: any): a is Actions.IFetchRequest => {
+  return a.type === ActionTypes.FETCH_REQUEST;
+};
 
-export const fetchSuccess = (action: any): action is ActionCreators.IActions['FETCH_SUCCESS'] => {
-  return action.type === ActionTypes.FETCH_SUCCESS
-}
+export const fetchSuccess = (a: any): a is Actions.IFetchSuccess => {
+  return a.type === ActionTypes.FETCH_SUCCESS;
+};
 
-export const fetchFailure = (action: any): action is ActionCreators.IActions['FETCH_FAILURE'] => {
-  return action.type === ActionTypes.FETCH_FAILURE
-}
+export const fetchFailure = (a: any): a is Actions.IFetchFailure => {
+  return a.type === ActionTypes.FETCH_FAILURE;
+};

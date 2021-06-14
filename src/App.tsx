@@ -1,15 +1,14 @@
 import React from "react";
-import "./App.css";
 import { usePeople } from "./hooks";
 import { Pagination, Skeleton } from "@material-ui/lab";
 import {
   Box,
   CircularProgress,
   Container,
-  Grid,
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import "./App.css";
 
 const useListStyles = makeStyles((theme) => ({
   root: {
@@ -26,20 +25,20 @@ const useListStyles = makeStyles((theme) => ({
 function App() {
   const { query, setPage, result } = usePeople();
   const { page } = query || {};
+  const { loading, data } = result || {};
+  const { results = [] } = data || {};
 
-  const { loading } = result || {};
-
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = (e: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-
-  const { data } = result || {};
-  const { results = [] } = data || {};
 
   const classes = useListStyles();
 
   return (
     <Container maxWidth="sm">
+      {/**
+       * Title (with loading indicator)
+       */}
       <Box display="flex" className={classes.root}>
         <Box mb={2}>
           <Typography variant="h4">
@@ -49,10 +48,13 @@ function App() {
         </Box>
       </Box>
       <Box>
+        {/**
+         * Skeleton results
+         */}
         {results.length === 0 &&
           loading &&
           Array.from(Array(10)).map((item, i) => {
-            const randomLength = 160 - Math.floor(Math.random() * 50);
+            const randomLength = 90 - Math.floor(Math.random() * 50);
             return (
               <Box display="block" key={i} className={classes.result}>
                 <Skeleton
@@ -63,12 +65,18 @@ function App() {
               </Box>
             );
           })}
+        {/**
+         * Map through results
+         */}
         {results.map((result) => (
           <Box key={result.uid} className={classes.result}>
             {result.name}
           </Box>
         ))}
       </Box>
+      {/**
+       * Pagination
+       */}
       <Box display="flex" justifyContent="center">
         <Pagination
           count={10}
