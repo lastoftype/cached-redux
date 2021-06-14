@@ -3,7 +3,7 @@ import * as qs from "qs";
 
 import * as ActionTypes from "./actionTypes";
 import Api from "../api";
-import { Result } from "../types";
+import { Result, RootObject } from "../types";
 import { IState } from "./reducer";
 
 type TActionTypes = typeof ActionTypes;
@@ -29,7 +29,7 @@ export interface IFetchSuccess {
    * @example '?page=1'
    */
   queryString: string;
-  data: any;
+  data: RootObject;
 }
 
 export const fetchSuccess = (queryString: string, data: Result) => ({
